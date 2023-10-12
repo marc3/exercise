@@ -1,0 +1,19 @@
+(library (name merkle_tree)
+ (libraries blake2 hex data-encoding zarith)
+  (modules merkle_tree)
+)
+
+(library (name network)
+ (libraries merkle_tree hex data-encoding lwt.unix)
+ (modules network)
+)
+
+(executables
+ (names client server test)
+ (libraries
+   lwt.unix
+   unix
+   network
+   merkle_tree)
+ (modules client server test)
+)
